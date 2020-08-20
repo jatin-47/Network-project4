@@ -1,0 +1,92 @@
+{% extends "network/layout.html" %}
+
+{% block title %}{{username}}{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <h2>{{username}}</h2>
+    <hr>
+    <div class="details">
+        <div id="user_image">{{image}}</div>
+        <div class="separater"> </div>
+        <div class="follow">Followers : <span id="followers">{{followers}}</span><br>Following : {{following}}</div>
+    </div>
+    {% if user.is_authenticated and username != request.user.username %}
+    <div class="button">
+        <button id="follow" style="display: {{follow}};" data-username = "{{username}}">Follow +</button>
+        <button id="unfollow" style="display: {{unfollow}};" data-username = "{{username}}">Unfollow -</button>
+    </div>
+    {% endif %}
+    <hr>
+    {% if user.is_authenticated and username == request.user.username %}
+    <div class="new_post">
+        <h4>New Post</h4>
+        <form action="{% url 'new_post' username=request.user %}" method="POST" id='newpost'>
+            {% csrf_token %}
+            <textarea name="content" id="new_post" placeholder="Share your thoughts..." cols="30" rows="3" required max_length=1000></textarea>
+            <button type="submit">POST</button>
+        </form>
+    </div>
+    <hr>
+    {% endif %}
+    <div class="posts">
+    {% for post in posts %}
+        <div class="post" id="post_{{post.id}}">
+            <div class="head"> 
+                <div>
+                    <h3><a href="{% url 'profile' username=post.posted_by %}">{{post.posted_by.username}}</a></h3>
+                    <span>{{post.timestamp}}</span>
+                </div>
+                {% if user.is_authenticated and post.posted_by.username == request.user.username %}
+                <div class="edit">
+                    <i class="fa fa-edit" data-id="{{post.id}}" title="EDIT"></i>
+                    <div class="after_edit" id="after_edit_{{post.id}}">
+                        <button type="submit" form="editform_{{post.id}}"><i class="fa fa-save" title="SAVE" type="submit" ></i></button>
+                        <i class="fa fa-window-close" id="close_{{post.id}}" title="CANCEL"></i>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            <div class="body">
+                <p id="old_text_{{post.id}}">{{post.body}}</p>
+                <form id="editform_{{post.id}}">
+                    <textarea name="edited_text" id="edit_post_{{post.id}}" cols="30" rows="3" required max_length=1000></textarea>
+                </form>
+            </div>
+            <div class="likes">
+                {% if user.is_authenticated %}
+                    {% if request.user in post.likes.all %}
+                    <i class="fa fa-thumbs-up" data-id="{{post.id}}" title="UNLIKE" style="color: #fd8f00;"></i> 
+                    {% else %}
+                    <i class="fa fa-thumbs-up" data-id="{{post.id}}" title="LIKE"></i> 
+                    {% endif %}
+                {% endif %}
+                <span><span id="likes_{{post.id}}">{{ post.likes.all.count }}</span> Likes</span>
+            </div>
+        </div>
+    {% empty %}
+        <p style="text-align: center;">No posts yet!</p>
+    {% endfor %}
+    </div>
+    <div class="pages">
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; First</a></li>
+
+            {% if posts.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ posts.previous_page_number }}">Previous</a></li>
+            {% endif %}
+
+            {% for page_no in range %}
+                <li class="page-item {% if page_no == posts.number %} active {% endif %}"><a class="page-link" href="?page={{page_no}}">{{page_no}}</a></li>
+            {% endfor %}
+            
+            {% if posts.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ posts.next_page_number }}">Next</a></li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="?page={{ posts.paginator.num_pages }}">Last &raquo;</a></li>
+
+        </ul>
+    </div>
+</div>
+{% endblock %}

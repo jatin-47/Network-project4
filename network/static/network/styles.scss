@@ -1,0 +1,157 @@
+$color: #ff9100;
+body {
+    background-color: #ffebda;
+}
+.body {
+    padding: 15px;
+}
+h1 {
+    text-align: center;
+}
+.details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    #user_image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        font-size: 60px;
+        background-color: orange;
+        padding-bottom: 5px;
+        margin: 0px;
+    }
+    .separater {
+        height: 80px;
+        width: 1px;
+        margin: 0px 50px;
+        background-color: rgb(173, 173, 173);
+    }
+    .follow {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+}
+.button {
+    margin-top: 25px;
+    text-align: center;
+    button {
+        background-color: rgb(228, 228, 228);
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #ff1c1c;
+        border-radius: 5px;
+        border: 3px solid #ff1c1c;
+        outline: none;
+    }
+    #follow {
+        color: #0400ff;
+        border: 3px solid #0077ff;
+    }
+}
+
+.new_post {
+    textarea {
+        width: 100%;
+        border-radius: 8px;
+        padding: 5px;
+    }
+    button {
+        width: 100%;
+        padding: 5px;
+        outline: none;
+        border: none;
+        border-radius: 8px;
+        background-color: rgb(111, 111, 255);
+        font-weight: bold;
+        color: white;
+    }
+    button:hover {
+        background-color: rgb(92, 92, 204);
+    }
+}
+.post {
+    width: 100%;
+    border: 1px solid rgb(187, 187, 187);
+    border-radius: 3px;
+    margin-top: 20px;
+    .head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #BDD358;
+        padding: 5px;
+        padding-left: 15px;
+        border-radius: 3px;
+        h3 {
+            font-size: 19px;
+            margin: 0;
+        }
+        span {
+            color: rgb(70, 70, 70);
+            font-size: 13px;
+        }
+        i {
+            font-size: 25px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+        .fa-edit:hover {
+            color: #fd8f00;
+        }
+        .fa-save:hover {
+            color: #0003cf;
+        }
+        .fa-window-close:hover {
+            color: #ff0000;
+        }
+        .after_edit {
+            display: none;
+            button {
+                background: transparent;
+                box-shadow: 0px 0px 0px transparent;
+                border: 0px solid transparent;
+                outline: none;
+                text-shadow: 0px 0px 0px transparent;
+            } 
+        }
+    }
+    .body {
+        background-color: rgb(88, 88, 88);
+        p {
+            color: white;
+            white-space: pre-wrap;
+            margin: 0;
+            font-size: 18px;
+        }
+        form {
+            display: none;
+        }
+        textarea {
+            width: 100%;
+            border-radius: 8px;
+            padding: 5px;
+        }
+    }
+    .likes {
+        background-color: #B5DDA4;
+        padding: 5px;
+        padding-left: 15px;
+        border-radius: 3px;
+        i {
+            cursor: pointer;
+            font-size: 19px;
+        }
+        i:hover {
+            color: #fd8f00;
+        }
+        span {
+            font-size: 15px;
+        }
+    }
+}
+.pages {
+    margin-top: 25px;
+}
