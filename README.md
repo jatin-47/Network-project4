@@ -1,7 +1,6 @@
 # Network (Project-4)
-https://youtu.be/94OPtqoW4bc <br>
-A Social Networking Site Demo
-<br>
+A Social Networking Site Demo: https://youtu.be/94OPtqoW4bc <br>
+
 To run this web app in your local machine, follow below steps:
 - Clone this repository
 - Open terminal/command prompt
